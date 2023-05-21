@@ -1,0 +1,40 @@
+.cast {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: -15px;
+  text-align: center;
+  min-height: 450px;
+}
+
+.castItem {
+  width: 200px;
+  height: 350px;
+  margin: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.castImg {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.castImg:hover,
+.castImg:focus {
+  transform: scale(1.08);
+  cursor: zoom-in;
+}
+
+.name {
+  margin-bottom: 0px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.character {
+  font-size: 15px;
+  color: #fff;
+}

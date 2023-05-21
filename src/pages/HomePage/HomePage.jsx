@@ -16,17 +16,19 @@
 
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import {Link, useLocation, useSearchParams } from 'react-router-dom';
 // import { HomeBlock } from './HomePage.styled';
 // import { Title } from 'components/Title/Title';
 // import Pagination from 'components/Pagination/Pagination';
-import { MovieGallery } from 'modules/MovieGallery/MovieGallery';
-import { Loader } from 'components/Loader/Loader';
+// import { MovieGallery } from 'modules/MovieGallery/MovieGallery';
+// import { Loader } from 'components/Loader/Loader';
 // import ImageErrorView from 'components/ImageErrorView/ImageErrorView';
 import ErrorComponent from '../../components/Error/Error';
+import LoaderComponent from '../../components/Loader';
 import apiService from '../../services/apiService';
 import Status from '../../services/status';
 import styles from './HomePage.module.css';
+// import { Pagination } from '@material-ui/lab';
 // import {
 //   getGenresMovies,
 //   getPopularMovies,
@@ -41,6 +43,7 @@ export const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const [status, setStatus] = useState(Status.IDLE);
+    const [totalPage, setTotalPage] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
  
     const params = useMemo(
@@ -80,7 +83,7 @@ export const Home = () => {
             {movies.map(movie => (
               <li key={movie.id} className={styles.moviesItem}>
                 <Link
-                  to={`/goit-react-hw-05-movies/movies/${movie.id}`}
+                  to={`/movies/${movie.id}`}
                   className={styles.link}
                   state={{ getBack: {...location} }}
                 >
@@ -88,7 +91,7 @@ export const Home = () => {
                     src={
                       movie.poster_path
                         ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                        : noPhoto
+                        : noImageFound
                     }
                     alt={movie.title}
                     className={styles.poster}
@@ -99,7 +102,17 @@ export const Home = () => {
               </li>
             ))}
           </ul>
-          
+          {/* {totalPage > 1 && (
+            <Pagination
+              className={classes.root}
+              count={totalPage}
+              onChange={onHandlePage}
+              page={Number(page)}
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          )} */}
         </>
       )}
     </main>
