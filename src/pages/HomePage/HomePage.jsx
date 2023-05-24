@@ -1,46 +1,19 @@
-// import React from 'react';
-// // import { PageNf, Wrap } from './PageNotFound.styled';
-
-// export const Home = () => {
-//   return (
-//     <div>
-       
-        
-//           <h1>HomePage</h1>
-//           <p>Page not found...</p>
-        
-      
-//     </div>
-//   );
-// };
-
-
+ 
 import React, { useEffect, useMemo, useState } from 'react';
 import {Link, useLocation, useSearchParams } from 'react-router-dom';
-// import { HomeBlock } from './HomePage.styled';
-// import { Title } from 'components/Title/Title';
-// import Pagination from 'components/Pagination/Pagination';
-// import { MovieGallery } from 'modules/MovieGallery/MovieGallery';
-// import { Loader } from 'components/Loader/Loader';
-// import ImageErrorView from 'components/ImageErrorView/ImageErrorView';
+ 
 import ErrorComponent from '../../components/Error/Error';
 import LoaderComponent from '../../components/Loader';
 import apiService from '../../services/apiService';
 import Status from '../../services/status';
 import styles from './HomePage.module.css';
-// import { Pagination } from '@material-ui/lab';
-// import {
-//   getGenresMovies,
-//   getPopularMovies,
-//   getTopRatedMovies,
-// } from 'services/themoviedbAPI';
+import noPhoto from '../../img/no_image.jpg';
+
+ 
 
 export const Home = () => {
     const [movies, setMovies] = useState([]);
-    const [topMovies, setTopMovies] = useState([]);
-    const [genres, setGenres] = useState([]);
-    const [totalPages, setTotalPages] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
+      
     const [error, setError] = useState(false);
     const [status, setStatus] = useState(Status.IDLE);
     const [totalPage, setTotalPage] = useState(0);
@@ -91,7 +64,7 @@ export const Home = () => {
                     src={
                       movie.poster_path
                         ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                        : noImageFound
+                        : noPhoto
                     }
                     alt={movie.title}
                     className={styles.poster}

@@ -2,11 +2,17 @@
 // import { ToastContainer, Slide } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import { RxThickArrowUp } from 'react-icons/rx';
-
+import { useEffect } from 'react';
+import { addBackToTop } from 'vanilla-back-to-top';
 // import { GlobalStyle } from 'styles/GlobalStyle';
 import UserRoutes from './UserRoutes';
 
 export const App = () => {
+  useEffect(() => {
+    addBackToTop({
+      backgroundColor: '#fa7584',
+    });
+  }, []);
   return (
     <>
       <UserRoutes />

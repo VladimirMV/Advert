@@ -35,7 +35,15 @@
 
 .information {
   text-align: center;
-  font-size: 18px;
+  font-size: 24px;
+  background-image: linear-gradient(
+    90deg,
+    #6eb9fc 5%,
+    #f888d2 45%,
+    #fd957d 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .link {
@@ -43,18 +51,29 @@
   padding: 12px;
   text-decoration: none;
   color: white;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .activeLink {
-  composes: link;
   color: #e3f309cb;
+  font-weight: 500;
+  font-size: 20px;
+  background-image: linear-gradient(
+    90deg,
+    #6eb9fc 5%,
+    #f888d2 45%,
+    #fd957d 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
 }
 
 .button {
@@ -70,8 +89,8 @@ img {
   font-size: 0.95em;
   font-weight: 600;
   line-height: 1;
-  background-color: #527c82;
-  border-color: #527c82;
+  background-color: #2f3343ff;
+  border-color: #2f3343ff;
   border-radius: 8px;
   color: #fff;
   transition: all 150ms ease-in-out;
@@ -90,17 +109,41 @@ img {
 .mainTitle {
   margin-top: -10px;
   color: #ec625fcb;
+  background-image: linear-gradient(
+    90deg,
+    #6eb9fc 5%,
+    #f888d2 45%,
+    #fd957d 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .title {
   margin-bottom: 5px;
   color: #ec625fcb;
+  background-image: linear-gradient(
+    90deg,
+    #6eb9fc 5%,
+    #f888d2 45%,
+    #fd957d 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .genre {
   display: flex;
   align-items: center;
   font-style: italic;
+  background-image: linear-gradient(
+    90deg,
+    #6eb9fc 5%,
+    #f888d2 45%,
+    #fd957d 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .genre li:not(:last-child)::after {
@@ -112,4 +155,12 @@ img {
   margin-top: -10px;
   margin-bottom: 20px;
   font-style: italic;
+  background-image: linear-gradient(
+    90deg,
+    #6eb9fc 5%,
+    #f888d2 45%,
+    #fd957d 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

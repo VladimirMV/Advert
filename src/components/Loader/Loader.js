@@ -1,12 +1,12 @@
-import { Grid } from 'react-loader-spinner';
+import { RotatingTriangles } from 'react-loader-spinner';
 
 export default function LoaderComponent() {
   return (
-    <Grid
-      height="80"
-      width="80"
-      color="#4fa94d"
-      ariaLabel="grid-loading"
+    <RotatingTriangles
+      height="180"
+      width="180"
+      colors={['#fa7584;', '#6eb9fc', '#fd957d']}
+      ariaLabel="rotating-triangels-loading"
       radius="12.5"
       wrapperStyle={{
         position: 'fixed',
