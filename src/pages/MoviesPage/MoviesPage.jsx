@@ -10,7 +10,7 @@ import noPhoto from '../../img/no_image.jpg';
 import SearchBar from '../../components/SearchBar';
 import styles from './MoviesPage.module.css';
 
-export const Movies  = () => {
+export default function  Movies  ()  {
 
   const navigate = useNavigate();
   const location = useLocation();

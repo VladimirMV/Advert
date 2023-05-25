@@ -10,7 +10,7 @@ import noPhoto from '../../img/no_image.jpg';
 import { Pagination } from '@mui/material';
 
 
-export const Home = () => {
+export default function Home  ()  {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [status, setStatus] = useState(Status.IDLE);

@@ -7,7 +7,7 @@ import ErrorComponent from '../../components/Error';
 import noPhoto from '../../img/no_image.jpg';
 import styles from './Cast.module.css';
 
-export const Cast = () => {
+export default function Cast() {
   const { movieId } = useParams();
   const [actors, setActors] = useState(null);
   const [error, setError] = useState(null);
@@ -64,4 +64,4 @@ export const Cast = () => {
       )}
     </>
   );
-};
+}

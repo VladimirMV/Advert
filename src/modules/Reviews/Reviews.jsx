@@ -4,10 +4,10 @@ import ErrorComponent from '../../components/Error';
 import apiService from '../../services/apiService';
 import LoaderComponent from '../../components/Loader';
 import Status from '../../services/status';
-// import ShowMoreText from 'react-show-more-text';
 import styles from './Reviews.module.css';
 
-export const  Reviews = () => {
+
+export default function  Reviews  ()  {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
@@ -42,17 +42,7 @@ export const  Reviews = () => {
             <li key={review.id} className={styles.item}>
               <h2 className={styles.author}>{review.author}</h2>
               <p>
-                {/* <ShowMore
-                  text={review.content}
-                  length={700}
-                  showMoreLabel=" Show more >>"
-                  showLessLabel=" Show less <<"
-                  style={{
-                    cursor: 'pointer',
-                    color: 'rgba(238, 138, 16, 0.952)',
-                    fontWeight: 'bold',
-                  }}
-                /> */}
+         
                       {review.content}
               </p>
             </li>

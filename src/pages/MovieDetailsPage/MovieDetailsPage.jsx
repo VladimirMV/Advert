@@ -14,7 +14,7 @@ import ErrorComponent from '../../components/Error';
 import noPhoto from '../../img/no_image.jpg';
 import styles from './MovieDetailsPage.module.css';
 
-export const MovieDetailsPage = () => {
+export default function  MovieDetailsPage   ()   {
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
