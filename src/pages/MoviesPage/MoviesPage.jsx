@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
 import apiService from '../../services/apiService';
-// import { Pagination } from '@material-ui/lab';
-// import useStyles from '../../services/stylesPagination';
+import { Pagination } from '@mui/material'; 
 import Status from '../../services/status';
 import LoaderComponent from '../../components/Loader';
 import ErrorComponent from '../../components/Error';
@@ -12,7 +11,7 @@ import SearchBar from '../../components/SearchBar';
 import styles from './MoviesPage.module.css';
 
 export const Movies  = () => {
-//   const classes = useStyles();
+
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname: url } = location;
@@ -43,7 +42,6 @@ export const Movies  = () => {
           setStatus(Status.REJECTED);
           return;
         }
-
         setMovies(results);
         setTotalPage(total_pages);
         setStatus(Status.RESOLVED);
@@ -71,13 +69,10 @@ export const Movies  = () => {
   return (
     <>
       <SearchBar onHandleSubmit={searchImages} currQuery={query} />
-
       {status === Status.PENDING && <LoaderComponent />}
-
       {status === Status.REJECTED && (
         <ErrorComponent message={error} textError="Error" />
       )}
-
       {status === Status.RESOLVED && (
         <>
           <ul className={styles.moviesList}>
@@ -89,11 +84,7 @@ export const Movies  = () => {
                   className={styles.link}
                 >
                   <img
-                    src={
-                      movie.poster_path
-                        ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                        : noPhoto
-                    }
+                    src={ movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`: noPhoto    }
                     alt={movie.title}
                     width="320"
                     className={styles.poster}
@@ -103,9 +94,10 @@ export const Movies  = () => {
               </li>
             ))}
           </ul>
-          {/* {totalPage > 1 && (
+          {totalPage > 1 && (
             <Pagination
-              className={classes.root}
+              className={styles.pagination}
+              color='primary'
               count={totalPage}
               onChange={onHandlePage}
               page={Number(page)}
@@ -113,7 +105,7 @@ export const Movies  = () => {
               showLastButton
               size="large"
             />
-          )} */}
+          )}
         </>
       )}
     </>

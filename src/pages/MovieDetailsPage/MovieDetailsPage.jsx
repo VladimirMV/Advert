@@ -21,8 +21,8 @@ export const MovieDetailsPage = () => {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
   const [backLocation, setBackLocation] = useState(null);
-
   const location = useLocation();
+
   if (location.state && location.state.getBack && !backLocation) {
     setBackLocation({ ...location.state.getBack });
   }
@@ -47,7 +47,9 @@ export const MovieDetailsPage = () => {
       });
   }, [movieId, error]);
 
+ 
   const onGoBack = () => {
+    
     navigate(backLocation);
   };
 
@@ -131,27 +133,5 @@ export const MovieDetailsPage = () => {
   );
 }
 
-
-
-
-
-
-
-
-// import React from 'react';
-// // import { PageNf, Wrap } from './PageNotFound.styled';
-
-// export const MovieDetailsPage = () => {
-//   return (
-//     <div>
-       
-        
-//           <h1>MovieDetailsPage</h1>
-//           <p>Page not found...</p>
-        
-      
-//     </div>
-//   );
-// };
 
 

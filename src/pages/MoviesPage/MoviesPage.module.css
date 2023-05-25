@@ -46,3 +46,21 @@
 .link {
   text-decoration: none;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-left: 220px;
+  width: 600px;
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  background-image: linear-gradient(
+    90deg,
+    #6eb9fc 5%,
+    #f888d2 45%,
+    #fd957d 85%
+  );
+}
