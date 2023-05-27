@@ -18,39 +18,29 @@ export default function  MovieDetailsPage   ()   {
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
-  const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
-  const [backLocation, setBackLocation] = useState(null);
   const location = useLocation();
-
-  if (location.state && location.state.getBack && !backLocation) {
-    setBackLocation({ ...location.state.getBack });
-  }
+  const goBack = location.state?.getBack || "/";
+ 
 
   useEffect(() => {
     setStatus(Status.PENDING);
     apiService
       .getMovieById(movieId)
       .then(data => {
-        if (!data) {
-          setError('Not found');
-          setStatus(Status.REJECTED);
-          return;
-        }
         setMovie(data);
         setStatus(Status.RESOLVED);
       })
       .catch(error => {
         console.log(error);
-        setError('Something went wrong. Please try again.');
         setStatus(Status.REJECTED);
       });
-  }, [movieId, error]);
+  }, [movieId]);
 
  
   const onGoBack = () => {
     
-    navigate(backLocation);
+    navigate(goBack);
   };
 
   return (

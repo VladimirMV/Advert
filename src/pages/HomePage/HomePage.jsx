@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import {NavLink, useLocation, useSearchParams,useNavigate } from 'react-router-dom';
+import {useLocation, useSearchParams  } from 'react-router-dom';
 
 import ErrorComponent from '../../components/Error/Error';
 import LoaderComponent from '../../components/Loader';
+import MoviesList from '../../components/MoviesList/MoviesList';
 import apiService from '../../services/apiService';
 import Status from '../../services/status';
 import styles from './HomePage.module.css';
-import noPhoto from '../../img/no_image.jpg';
 import { Pagination } from '@mui/material';
 
 
@@ -16,14 +16,10 @@ export default function Home  ()  {
   const [status, setStatus] = useState(Status.IDLE);
   const [totalPage, setTotalPage] = useState(0);
   const [searchParams , setSearchParams] = useSearchParams({ page: 1 });
-  const navigate = useNavigate();
   const location = useLocation();
   const params = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
   const page = Number(params.page || 1);
-
-  function handleSetSearchParams (page) {
-    setSearchParams({ page });
-  }
+ 
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -42,9 +38,8 @@ export default function Home  ()  {
 
     function handlePage(event, page) {
    
-      handleSetSearchParams(page);
-     
-    navigate({ ...location, search: `page=${page}` });
+     setSearchParams({ page });
+
   };
  
 
@@ -57,25 +52,12 @@ export default function Home  ()  {
       {status === Status.REJECTED && <ErrorComponent message={error.message} textError="Error" />}
 
       {status === Status.RESOLVED && (
-      <>
-        <ul className={styles.moviesList}>
-          {movies.map(({id, poster_path, title}) => (
-            <li key={id} className={styles.moviesItem}> 
-              
-              
-              <NavLink to={{ pathname: `/movies/${id}` }}
-                 state={{ getBack: { ...location } }}
-                className={styles.link}>
-                <img
-                  src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : noPhoto}
-                  alt={title}
-                  className={styles.poster}
-                />
-              <span className={styles.movieTitle}>{title}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        <>
+         <MoviesList
+          movies={movies}
+          location={location}  
+        /> 
+
       {totalPage > 1 && (
         <Pagination
           className={styles.pagination}

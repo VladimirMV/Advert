@@ -9,75 +9,50 @@ axios.defaults.params = {
 };
 
 async function getPopularMovies(page) {
-  try {
-    const config = {
-      url: `trending/movie/day`,
-      params: {
-        page,
-      },
-    };
-    const { data } = await axios(config, page);
-    return data;
-  } catch (error) {
-    console.log('error', { error });
-    return null;
-  }
+  const config = {
+    url: `trending/movie/day`,
+    params: {
+      page,
+    },
+  };
+  const { data } = await axios(config, page);
+  return data;
 }
 
 async function getMoviesByKeyWord(query, page) {
-  try {
-    const config = {
-      url: `search/movie`,
-      params: {
-        query,
-        page,
-      },
-    };
-    const { data } = await axios(config, query, page);
-    return data;
-  } catch (error) {
-    console.log('error', { error });
-    return null;
-  }
+  const config = {
+    url: `search/movie`,
+    params: {
+      query,
+      page,
+    },
+  };
+  const { data } = await axios(config, query, page);
+  return data;
 }
 
 async function getMovieById(id) {
-  try {
-    const config = {
-      url: `movie/${id}`,
-    };
-    const { data } = await axios(config, id);
-    return data;
-  } catch (error) {
-    console.log('error', { error });
-    return null;
-  }
+  const config = {
+    url: `movie/${id}`,
+  };
+  const { data } = await axios(config, id);
+  return data;
 }
 
 async function getCastInfo(id) {
-  try {
-    const config = {
-      url: `movie/${id}/credits`,
-    };
-    const { data } = await axios(config, id);
-    return data.cast;
-  } catch (error) {
-    console.log('error', { error });
-    return null;
-  }
+  const config = {
+    url: `movie/${id}/credits`,
+  };
+  const { data } = await axios(config, id);
+  return data.cast;
 }
 
 async function getMovieReview(id) {
-  try {
-    const config = {
-      url: `movie/${id}/reviews`,
-    };
-    const { data } = await axios(config, id);
-    return data.results;
-  } catch (error) {
-    console.log('error', { error });
-    return null;
-  }
+  const config = {
+    url: `movie/${id}/reviews`,
+  };
+  const { data } = await axios(config, id);
+  return data.results;
 }
 
 const apiService = {
