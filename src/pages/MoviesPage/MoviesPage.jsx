@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
+import {  useLocation,useSearchParams } from 'react-router-dom';
 
 import apiService from '../../services/apiService';
 import { Pagination } from '@mui/material'; 
@@ -12,14 +12,17 @@ import MoviesList from '../../components/MoviesList/MoviesList';
 
 export default function  Movies  ()  {
 
-  const navigate = useNavigate();
+ 
   const location = useLocation();
   const [query, setQuery] = useState('');
   const [totalPage, setTotalPage] = useState(0);
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
-  const page = new URLSearchParams(location.search).get('page') ?? 1;
+  const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
+  const params = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
+  const page = Number(params.page || 1);
+   
 
   useEffect(() => {
     const newSearch = new URLSearchParams(location.search).get('query');
@@ -57,7 +60,8 @@ export default function  Movies  ()  {
   };
 
   const onHandlePage = (event, page) => {
-    navigate({ ...location, search: `query=${query}&page=${page}` });
+  
+      setSearchParams({ page });
   };
 
   return (

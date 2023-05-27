@@ -1,7 +1,6 @@
 import styles from './MoviesList.module.css';
 import noPhoto from '../../img/no_image.jpg';
 import { NavLink } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 
 export default function MoviesList({ movies, location }) {
   return (
@@ -29,12 +28,3 @@ export default function MoviesList({ movies, location }) {
     </ul>
   );
 }
-
-// MoviesList.propTypes = {
-//   movies: PropTypes.shape({
-//     poster_path: PropTypes.string,
-//     id: PropTypes.number.isRequired,
-//     title: PropTypes.string.isRequired,
-//   }).isRequired,
-//   location: PropTypes.objectOf(PropTypes.object).isRequired,
-// };
