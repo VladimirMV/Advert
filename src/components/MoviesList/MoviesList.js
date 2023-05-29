@@ -9,7 +9,7 @@ export default function MoviesList({ movies, location }) {
         <li key={id} className={styles.moviesItem}>
           <NavLink
             to={{ pathname: `/movies/${id}` }}
-            state={{ getBack: { ...location } }}
+            state={{ from: { ...location } }}
             className={styles.link}
           >
             <img

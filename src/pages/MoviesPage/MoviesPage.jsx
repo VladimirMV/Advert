@@ -12,22 +12,16 @@ import MoviesList from '../../components/MoviesList/MoviesList';
 
 export default function  Movies  ()  {
 
- 
   const location = useLocation();
-  const [query, setQuery] = useState('');
   const [totalPage, setTotalPage] = useState(0);
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
-  const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
+  const [searchParams, setSearchParams] = useSearchParams({page: 1,query: ''});
   const params = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
   const page = Number(params.page || 1);
+  let { query } = params;
    
-
-  useEffect(() => {
-    const newSearch = new URLSearchParams(location.search).get('query');
-    setQuery(newSearch, page);
-  }, [location.search, page]);
 
   useEffect(() => {
     if (!query) return;
@@ -49,19 +43,18 @@ export default function  Movies  ()  {
         setError(error.message);
         setStatus(Status.REJECTED);
       });
-  }, [query, page]);
+  }, [page, query ]);
 
   const searchImages = newSearch => {
     if (query === newSearch) return;
-    setQuery(newSearch);
     setMovies(null);
     setError(null);
     setStatus(Status.IDLE);
+    setSearchParams({ page: page, query: newSearch });
   };
 
-  const onHandlePage = (event, page) => {
-  
-      setSearchParams({ page });
+  const onHandlePage = (event, page ) => {
+        setSearchParams({ page, query });
   };
 
   return (

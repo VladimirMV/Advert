@@ -20,8 +20,9 @@ export default function  MovieDetailsPage   ()   {
   const { movieId } = useParams();
   const [status, setStatus] = useState(Status.IDLE);
   const location = useLocation();
-  const goBack = location.state?.getBack || "/";
- 
+
+  const goBack = location.state?.from || "/";
+  
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -38,8 +39,7 @@ export default function  MovieDetailsPage   ()   {
   }, [movieId]);
 
  
-  const onGoBack = () => {
-    
+  const onGoBack = () => { 
     navigate(goBack);
   };
 
@@ -97,6 +97,7 @@ export default function  MovieDetailsPage   ()   {
 
             <NavLink
               to="cast"
+             state={location.state}
               className={({ isActive }) =>
                 isActive ? styles.activeLink : styles.link
               }
@@ -106,8 +107,10 @@ export default function  MovieDetailsPage   ()   {
 
             <NavLink
               to="reviews"
+              state={location.state}
               className={({ isActive }) =>
                 isActive ? styles.activeLink : styles.link
+                
               }
             >
               Reviews
