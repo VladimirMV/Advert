@@ -5,12 +5,17 @@ import ErrorComponent from '../../components/Error/Error';
 import LoaderComponent from '../../components/Loader';
 import MoviesList from '../../components/MoviesList/MoviesList';
 import apiService from '../../services/apiService';
+import apiAdvert from '../../services/apiAdvert';
 import Status from '../../services/status';
 import styles from './HomePage.module.css';
 import { Pagination } from '@mui/material';
 
 
 export default function Home  ()  {
+
+  const [adverts, setAdverts] = useState([]);
+
+
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [status, setStatus] = useState(Status.IDLE);
@@ -28,6 +33,7 @@ export default function Home  ()  {
         setMovies(results);
         setTotalPage(total_pages);
         setStatus(Status.RESOLVED);
+       
       })
       .catch(error => {
         console.log(error);
@@ -35,6 +41,22 @@ export default function Home  ()  {
         setStatus(Status.REJECTED);
       });
   }, [page]);
+ 
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const results = await apiAdvert.getAllAdverts()
+       // console.log('results====>>>',results );
+        setAdverts(results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log('Advers========>>>',adverts  );
 
     function handlePage(event, page) {
    
@@ -54,7 +76,7 @@ export default function Home  ()  {
       {status === Status.RESOLVED && (
         <>
          <MoviesList
-          movies={movies}
+          movies={adverts}
           location={location}  
         /> 
 

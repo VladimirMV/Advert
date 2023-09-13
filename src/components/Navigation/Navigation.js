@@ -11,10 +11,16 @@ const Navigation = () => (
     </NavLink>
 
     <NavLink
-      to="/movies"
+      to="/catalog"
       className={({ isActive }) => (isActive ? s.activeLink : s.link)}
     >
-      Movies
+      Catalog
+    </NavLink>
+    <NavLink
+      to="/favorites"
+      className={({ isActive }) => (isActive ? s.activeLink : s.link)}
+    >
+      Favorites
     </NavLink>
   </nav>
 );

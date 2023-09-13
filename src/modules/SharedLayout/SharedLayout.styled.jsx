@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 1200px;
   margin: 0 auto;
 
-  background: #2f3343ff;
+  background: #FFF;
 //   color: ${({ theme }) => theme.text};
   transition: all 0.25s linear;
 `;

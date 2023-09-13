@@ -2,7 +2,7 @@
   display: grid;
   max-width: calc(100vw - 35px);
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 25px;
+  grid-gap: 29px;
   margin: 10px auto 0px;
   padding: 0px 0px 30px;
   list-style: none;
@@ -39,8 +39,10 @@
   padding-bottom: 22px;
   align-items: center;
   text-align: center;
-  color: #fff;
-  background-image: linear-gradient(
+  color:#121417;
+  background:#fff;
+}
+  /* background-image: linear-gradient(
     90deg,
     #6eb9fc 5%,
     #f888d2 45%,
@@ -48,7 +50,7 @@
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
 .link {
   text-decoration: none;
