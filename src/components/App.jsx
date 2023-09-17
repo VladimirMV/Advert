@@ -6,7 +6,7 @@ import UserRoutes from './UserRoutes';
 export const App = () => {
   useEffect(() => {
     addBackToTop({
-      backgroundColor: '#fa7584',
+      backgroundColor: '#3470FF',
     });
   }, []);
   return (
