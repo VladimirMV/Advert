@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 import { theme } from 'styles';
 
-export const CategoryItem = styled.li`
+export const CategoryItem = styled.div`
   background: #FFF;
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -108,10 +107,35 @@ line-height: 24px; /* 150% */
     box-shadow: ${theme.shadows.regular};
   }
 `;
+export const SupportText = styled.p`
+  /* padding: 0 10px; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
 
+  color: rgba(18, 20, 23, 0.50);
+font-family: Manrope;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 18px; /* 150% */
+ 
+`;
 export const TextContainer = styled.div`
-  height: 24px;
+  /* height: 24px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const SupportingTextContainer = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 `;

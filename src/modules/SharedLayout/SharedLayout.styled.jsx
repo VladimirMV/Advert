@@ -10,6 +10,7 @@ export const Container = styled.div`
   margin: 0 auto;
 
   background: #FFF;
-//   color: ${({ theme }) => theme.text};
+  /* color: ${({ theme }) => theme.text}; */
+  color: rgba(18, 20, 23, 0.05);
   transition: all 0.25s linear;
 `;

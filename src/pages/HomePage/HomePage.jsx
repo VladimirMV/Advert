@@ -1,101 +1,35 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import {useLocation, useSearchParams  } from 'react-router-dom';
-
-import ErrorComponent from '../../components/Error/Error';
-import LoaderComponent from '../../components/Loader';
-import MoviesList from '../../components/MoviesList/MoviesList';
-import apiService from '../../services/apiService';
-import apiAdvert from '../../services/apiAdvert';
-import Status from '../../services/status';
-import styles from './HomePage.module.css';
-import { Pagination } from '@mui/material';
-
+import React from 'react';
+import { Main, Text, Text2 } from './HomePage.styled';
 
 export default function Home  ()  {
-
-  const [adverts, setAdverts] = useState([]);
-
-
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(false);
-  const [status, setStatus] = useState(Status.IDLE);
-  const [totalPage, setTotalPage] = useState(0);
-  const [searchParams , setSearchParams] = useSearchParams({ page: 1 });
-  const location = useLocation();
-  const params = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
-  const page = Number(params.page || 1);
- 
-
-  useEffect(() => {
-    setStatus(Status.PENDING);
-    apiService.getPopularMovies(page)
-      .then(({ results, total_pages }) => {
-        setMovies(results);
-        setTotalPage(total_pages);
-        setStatus(Status.RESOLVED);
-       
-      })
-      .catch(error => {
-        console.log(error);
-        setError('Something went wrong. Please try again.');
-        setStatus(Status.REJECTED);
-      });
-  }, [page]);
- 
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const results = await apiAdvert.getAllAdverts()
-       // console.log('results====>>>',results );
-        setAdverts(results);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  console.log('Advers========>>>',adverts  );
-
-    function handlePage(event, page) {
-   
-     setSearchParams({ page });
-
-  };
- 
-
   return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>Trending today</h1>
+    <Main>
+       
+        
+          <Text>Hertz</Text>
+          <Text2>
 
-      {status === Status.PENDING && <LoaderComponent />}
+Welcome to Hertz - your reliable partner in the world of car adventures!
 
-      {status === Status.REJECTED && <ErrorComponent message={error.message} textError="Error" />}
+✨ The journeys start here! ✨
 
-      {status === Status.RESOLVED && (
-        <>
-         <MoviesList
-          movies={adverts}
-          location={location}  
-        /> 
+Dreaming of an unforgettable trip in a comfortable car? We make your dreams come true. At [Your Company Name], we have cars for every purpose and budget. Whether you're planning a romantic weekend, a family adventure, or a business trip, we provide you with the keys to your next car.
 
-      {totalPage > 1 && (
-        <Pagination
-          className={styles.pagination}
-          color='primary'
-          count={totalPage}
-          onChange={handlePage}
-          page={Number(page)}
-          showFirstButton
-          showLastButton
-          size="large"
-        />
-      )}
-      </>
-    )}
-    </main>
+🚗 Our advantages:
+
+Wide selection of cars - from stylish sedans to spacious SUVs, we have a vehicle for every occasion.
+
+Easy rental process - we make the rental process quick and convenient, so you can start your adventure without hassle.
+
+Safety and reliability - each car undergoes regular inspections to ensure your safety and comfort.
+
+Friendly support - our team is ready to assist you 24/7. If you have questions or need assistance on the road, we're always here.
+
+🌍 Ready to start your next car adventure? Submit your request right now, and your car will be waiting for you!
+
+Don't miss the opportunity to make your journey unforgettable with [Your Company Name]. We're ready to help you at every step of the way. Trust us, and let's hit the road! </Text2>
+        
+      
+    </Main>
   );
 };
-
- 

@@ -1,27 +1,31 @@
 import axios from 'axios';
 
-const advertsInstance = axios.create({
-  baseURL: 'https://648a1d425fa58521cab0d768.mockapi.io/advert',
-});
 
-//export const getAllAdverts = () => advertsInstance.get('/');
-export const getAllAdverts = async () => {
-    const res = await advertsInstance.get('/');
-    return res.data;
+  axios.defaults.baseURL =  'https://648a1d425fa58521cab0d768.mockapi.io'
+
+
+export const limit = 8;
+// export const getAllAdverts = async query => {
+export const getAllAdverts = async (page = 1) => {
+  const { data } = await axios.get(`/advert?limit=${limit}&page=${page}`);
+  // console.log("query  api",query);
+  // const { data } = await axios.get('/search', {
+  //   params: query,
+  // });
+  // console.log("data  api",data);
+  return data;
   };
-export const deleteAdverts = id => {
-  return advertsInstance.delete(`/${id}`);
-};
 
-export const addAdvert = data => {
-  console.log('data from API', data);
-  return advertsInstance.post('/', data);
-};
 
+
+  export const updateAdvert = async (id, updates) => {
+    const { data } = await axios.put(`/advert/${id}`, updates);
+
+    return data;
+};
 const apiAdverts = {
     getAllAdverts,
-    deleteAdverts,
-    addAdvert
+    updateAdvert,
 
   };
   export default apiAdverts;

@@ -1,15 +1,12 @@
-import React from 'react';
-// import { PageNf, Wrap } from './PageNotFound.styled';
+import AdvertList from '../../components/AdvertList/AdvertList';
+import { useFavorites } from 'hooks/useFavorites';
 
-export const FavoritesPage = () => {
-  return (
-    <div>
-       
-        
-          <h1>404</h1>
-          <p>Страница не найдена...</p>
-        
-      
-    </div>
-  );
+export const FavoritePage = () => {
+    const [favorites, toggleFavorites] = useFavorites();
+
+    return (
+        <div>
+            <AdvertList data={favorites} toggleFavorites={toggleFavorites} />
+        </div>
+    );
 };

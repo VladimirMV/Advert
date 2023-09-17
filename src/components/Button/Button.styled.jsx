@@ -1,0 +1,64 @@
+import styled from '@emotion/styled';
+import { theme } from 'styles';
+
+const getColorStyle = props => {
+  if (props.transparent) {
+    return {
+      paddingTop: '14px',
+      paddingBottom: '14px',
+      backgroundColor: 'transparent',
+      color: theme.colors.white,
+      border: '1px',
+      borderStyle: 'solid',
+      borderColor: theme.colors.transparentLight,
+    };
+  } else {
+    return {
+      backgroundColor: theme.colors.bgAccent,
+      color: theme.colors.white,
+    };
+  }
+};
+
+const getMinWidthStyle = props => {
+  return {
+    display: props.minWidth ? 'flex' : 'inline-flex',
+    width: props.minWidth ? props.minWidth : 'auto',
+  };
+};
+const getMinHeightStyle = props => {
+  return {
+    minHeight: props.minHeight ? props.minHeight : 'auto',
+  };
+};
+
+export const StyledButton = styled.button`
+  align-items: center;
+  justify-content: center;
+  padding: 14px 40px;
+  flex-grow: 1;
+  border-radius: 12px;
+  cursor: pointer;
+ 
+  ${getColorStyle}
+  ${getMinWidthStyle}
+  ${getMinHeightStyle}
+
+  @media screen and (min-width: 768px) {
+    padding: 12px 44px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.blackTransparent};
+    background-color: ${theme.colors.bgAccentHover};
+    box-shadow: ${theme.shadows.regular};
+  }
+
+  &:disabled {
+    color: ${theme.colors.transparentLight};
+    background-color: ${theme.colors.steelBlue};
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+`;

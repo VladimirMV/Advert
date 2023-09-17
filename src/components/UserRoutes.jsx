@@ -6,23 +6,17 @@ import { PageNotFound } from 'pages/PageNotFound/PageNotFound';
 
 
 const Home = lazy(() => import('pages/HomePage/HomePage'));
-const Movies = lazy(() => import('pages/MoviesPage/MoviesPage'));
+const Catalog = lazy(() => import('pages/CatalogPage/CatalogPage'));
 const Favorites = lazy(() => import('pages/FavoritesPage/FavoritesPage'));
-const MovieDetailsPage = lazy(() =>  import('pages/MovieDetailsPage/MovieDetailsPage'));
-const Cast = lazy(() => import('../modules/Cast/Cast'));
-const Reviews = lazy(() => import('../modules/Reviews/Reviews'));
+
 
 const UserRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
-        <Route path="catalog" element={<Movies />} />
+        <Route path="catalog" element={<Catalog />} />
         <Route path="favorites" element={<Favorites />} />
-        <Route path="movies/:movieId" element={<MovieDetailsPage />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
-        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
